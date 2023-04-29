@@ -9,6 +9,7 @@ import {
 } from './styles/jumbotron'
 
 function Jumbotron({ children, direction = 'row', ...restProps }) {
+  // TODO check where to pass {...restProps}
   return (
     <Item>
       <Inner direction={direction} {...restProps}>
