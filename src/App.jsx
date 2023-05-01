@@ -1,10 +1,12 @@
+import FooterContainer from './containers/FooterContainer'
 import JumbotronContainer from './containers/JumbotronContainer'
 
 function App() {
   return (
-    <div>
+    <>
       <JumbotronContainer />
-    </div>
+      <FooterContainer />
+    </>
   )
 }
 
