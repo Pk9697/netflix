@@ -34,6 +34,7 @@ Footer.Text = function FooterText({ children, ...restProps }) {
 
 Footer.Break = function FooterBreak({ children, ...restProps }) {
   return <Break {...restProps}>{children}</Break>
+  // return <Break/>
 }
 
 export default Footer

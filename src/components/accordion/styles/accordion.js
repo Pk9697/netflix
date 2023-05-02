@@ -34,6 +34,8 @@ export const Frame = styled.div`
 export const Item = styled.div`
   margin-bottom: 0.625em;
   max-width: 670px;
+  margin-left: auto;
+  margin-right: auto;
   &:first-of-type {
     margin-top: 3em;
   }
