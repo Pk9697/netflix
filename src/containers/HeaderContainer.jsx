@@ -7,7 +7,7 @@ function HeaderContainer({ children }) {
     <Header>
       <Header.Frame>
         <Header.Logo to={ROUTES.HOME} src={logo} alt="Netflix_logo" />
-        <Header.ButtonLink>Sign In</Header.ButtonLink>
+        <Header.ButtonLink to={ROUTES.SIGNIN}>Sign In</Header.ButtonLink>
       </Header.Frame>
       {children}
     </Header>

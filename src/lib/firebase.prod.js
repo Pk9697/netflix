@@ -3,7 +3,7 @@ import { getFirestore } from 'firebase/firestore'
 // import { getFirestore, collection, addDoc } from 'firebase/firestore'
 // import seedDatabase from '../seed'
 
-// TODO: Replace the following with your app's Firebase project configuration
+//* Firebase project configuration
 const firebaseConfig = {
   apiKey: 'AIzaSyBBoqHgAgNmtB0AViVrXb-1BU35ZF7RSmk',
   authDomain: 'netflix-5e2a6.firebaseapp.com',
