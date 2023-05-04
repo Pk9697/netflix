@@ -11,7 +11,8 @@ export const Background = styled.div`
       rgba(0, 0, 0, 0.1),
       rgba(0, 0, 0, 0.35)
     ),
-    url(${({ src }) => (src ? homeBg : homeBg)}) top left / cover no-repeat;
+    url(${({ src }) => (src ? import.meta.env.VITE_IMAGE_URL + src : homeBg)})
+      top left / cover no-repeat;
 `
 
 export const Container = styled.div`
