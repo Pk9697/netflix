@@ -33,7 +33,7 @@ export const Frame = styled.div`
 
 export const Item = styled.div`
   margin-bottom: 0.625em;
-  max-width: 670px;
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
   &:first-of-type {
