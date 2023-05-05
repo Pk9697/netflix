@@ -2,7 +2,12 @@ import { useMemo } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import * as ROUTES from './constants/routes'
-import { firebase } from './lib/firebase.prod'
+import {
+  firebase,
+  firebaseAuth,
+  firebaseDb,
+  signInWithEmailAndPassword,
+} from './lib/firebase.prod'
 import FirebaseContext from './context/firebase'
 import SignIn from './pages/SignIn'
 
@@ -10,6 +15,9 @@ function App() {
   const value = useMemo(
     () => ({
       firebase,
+      firebaseAuth,
+      firebaseDb,
+      signInWithEmailAndPassword,
     }),
     []
   )

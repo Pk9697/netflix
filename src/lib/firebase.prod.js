@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 // import { getFirestore, collection, addDoc } from 'firebase/firestore'
 // import seedDatabase from '../seed'
 
@@ -16,6 +17,8 @@ const firebaseConfig = {
 
 const firebase = initializeApp(firebaseConfig)
 const firebaseDb = getFirestore(firebase)
+// Initialize Firebase Authentication and get a reference to the service
+const firebaseAuth = getAuth(firebase)
 //! use only 1 time to load data to firestore
 // seedDatabase(firebaseDb, collection, addDoc)
-export { firebase, firebaseDb }
+export { firebase, firebaseDb, firebaseAuth, signInWithEmailAndPassword }

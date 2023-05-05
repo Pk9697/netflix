@@ -1,10 +1,15 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import FooterContainer from '../containers/FooterContainer'
 import HeaderContainer from '../containers/HeaderContainer'
 import * as ROUTES from '../constants/routes'
 import Form from '../components/form'
+import FirebaseContext from '../context/firebase'
 
 function SignIn() {
+  const { firebaseAuth, signInWithEmailAndPassword } =
+    useContext(FirebaseContext)
+  const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
@@ -14,6 +19,19 @@ function SignIn() {
   const handleSignIn = (e) => {
     e.preventDefault()
     // firebase work here!
+    signInWithEmailAndPassword(firebaseAuth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user
+        // ...
+        navigate(ROUTES.BROWSE)
+      })
+      .catch((err) => {
+        // const errorCode = err.code
+        setEmail('')
+        setPassword('')
+        setError(err.message)
+      })
   }
   return (
     <>
