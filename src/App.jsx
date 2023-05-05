@@ -7,9 +7,12 @@ import {
   firebaseAuth,
   firebaseDb,
   signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  updateProfile,
 } from './lib/firebase.prod'
 import FirebaseContext from './context/firebase'
 import SignIn from './pages/SignIn'
+import SignUp from './pages/SignUp'
 
 function App() {
   const value = useMemo(
@@ -18,6 +21,8 @@ function App() {
       firebaseAuth,
       firebaseDb,
       signInWithEmailAndPassword,
+      createUserWithEmailAndPassword,
+      updateProfile,
     }),
     []
   )
@@ -27,7 +32,7 @@ function App() {
         <Routes>
           <Route path={ROUTES.HOME} element={<Home />} />
           <Route path={ROUTES.SIGNIN} element={<SignIn />} />
-          <Route path={ROUTES.SIGNUP} element={<p>SignUp</p>} />
+          <Route path={ROUTES.SIGNUP} element={<SignUp />} />
           <Route path={ROUTES.BROWSE} element={<p>Browse</p>} />
         </Routes>
       </Router>

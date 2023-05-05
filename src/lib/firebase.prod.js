@@ -1,6 +1,11 @@
 import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from 'firebase/auth'
 // import { getFirestore, collection, addDoc } from 'firebase/firestore'
 // import seedDatabase from '../seed'
 
@@ -21,4 +26,11 @@ const firebaseDb = getFirestore(firebase)
 const firebaseAuth = getAuth(firebase)
 //! use only 1 time to load data to firestore
 // seedDatabase(firebaseDb, collection, addDoc)
-export { firebase, firebaseDb, firebaseAuth, signInWithEmailAndPassword }
+export {
+  firebase,
+  firebaseDb,
+  firebaseAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  updateProfile,
+}
