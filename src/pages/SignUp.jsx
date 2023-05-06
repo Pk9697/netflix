@@ -1,12 +1,12 @@
 import { useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import FooterContainer from '../containers/FooterContainer'
 import HeaderContainer from '../containers/HeaderContainer'
 import * as ROUTES from '../constants/routes'
 import Form from '../components/form'
 import FirebaseContext from '../context/firebase'
 
-function SignUp() {
+function SignUp(props) {
   const { firebaseAuth, createUserWithEmailAndPassword, updateProfile } =
     useContext(FirebaseContext)
   const navigate = useNavigate()
@@ -14,7 +14,16 @@ function SignUp() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
+  const location = useLocation()
 
+  // eslint-disable-next-line react/destructuring-assignment
+  if (props.user) {
+    if (location.state) {
+      return <Navigate to={location.state.data} />
+    }
+    // eslint-disable-next-line react/destructuring-assignment
+    return <Navigate to={props.to} />
+  }
   const isInvalid = userName === '' || password === '' || email === ''
 
   const handleSignUp = (e) => {

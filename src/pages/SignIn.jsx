@@ -1,18 +1,30 @@
 import { useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import FooterContainer from '../containers/FooterContainer'
 import HeaderContainer from '../containers/HeaderContainer'
 import * as ROUTES from '../constants/routes'
 import Form from '../components/form'
 import FirebaseContext from '../context/firebase'
 
-function SignIn() {
+function SignIn(props) {
   const { firebaseAuth, signInWithEmailAndPassword } =
     useContext(FirebaseContext)
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
+  const location = useLocation()
+  // console.log('Signin comp')
+  // eslint-disable-next-line react/destructuring-assignment
+  if (props.user) {
+    // console.log('location', location.state)
+    if (location.state) {
+      // console.log(location.state.data)
+      return <Navigate to={location.state.data} />
+    }
+    // eslint-disable-next-line react/destructuring-assignment
+    return <Navigate to={props.to} />
+  }
 
   const isInvalid = password === '' || email === ''
 
@@ -20,9 +32,10 @@ function SignIn() {
     e.preventDefault()
     // firebase work here!
     signInWithEmailAndPassword(firebaseAuth, email, password)
+      // eslint-disable-next-line no-unused-vars
       .then((userCredential) => {
         // Signed in
-        const user = userCredential.user
+        // const user = userCredential.user
         // ...
         navigate(ROUTES.BROWSE)
       })

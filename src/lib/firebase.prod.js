@@ -5,6 +5,8 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   updateProfile,
+  onAuthStateChanged,
+  signOut,
 } from 'firebase/auth'
 // import { getFirestore, collection, addDoc } from 'firebase/firestore'
 // import seedDatabase from '../seed'
@@ -33,4 +35,6 @@ export {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   updateProfile,
+  onAuthStateChanged,
+  signOut,
 }

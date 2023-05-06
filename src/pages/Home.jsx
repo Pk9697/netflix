@@ -5,10 +5,10 @@ import FooterContainer from '../containers/FooterContainer'
 import HeaderContainer from '../containers/HeaderContainer'
 import JumbotronContainer from '../containers/JumbotronContainer'
 
-function Home() {
+function Home({ user }) {
   return (
     <>
-      <HeaderContainer>
+      <HeaderContainer user={user}>
         <Feature>
           <Feature.Title>Unlimited movies, TV shows and more</Feature.Title>
           <Feature.SubTitle>Watch anywhere. Cancel anytime.</Feature.SubTitle>
