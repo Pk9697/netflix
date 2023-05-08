@@ -9,6 +9,8 @@ import {
   updateProfile,
   onAuthStateChanged,
   signOut,
+  collection,
+  getDocs,
 } from './lib/firebase.prod'
 
 function Root({ children }) {
@@ -22,6 +24,8 @@ function Root({ children }) {
       updateProfile,
       onAuthStateChanged,
       signOut,
+      collection,
+      getDocs,
     }),
     []
   )
