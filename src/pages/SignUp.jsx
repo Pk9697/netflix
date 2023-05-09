@@ -35,7 +35,7 @@ function SignUp(props) {
         const { user } = userCredential
         updateProfile(user, {
           displayName: userName,
-          photoURL: Math.floor(Math.random() * 5) + 1,
+          photoURL: `avatar${Math.floor(Math.random() * 5) + 1}`,
         })
           .then(() => {
             navigate(ROUTES.BROWSE)

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Link as ReactRouterLink } from 'react-router-dom'
-import homeBg from '../../../home-bg.jpg'
-// `../images/misc/${src}.jpg`
+import BACKGROUNDS from '../../../assets/images/misc'
+
 export const Background = styled.div`
   display: flex;
   flex-direction: column;
@@ -11,8 +11,8 @@ export const Background = styled.div`
       rgba(0, 0, 0, 0.1),
       rgba(0, 0, 0, 0.35)
     ),
-    url(${({ src }) => (src ? import.meta.env.VITE_IMAGE_URL + src : homeBg)})
-      top left / cover no-repeat;
+    url(${({ src }) => (src ? BACKGROUNDS.joker : BACKGROUNDS.homeBg)}) top left /
+      cover no-repeat;
 `
 
 export const Container = styled.div`
