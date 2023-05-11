@@ -1,5 +1,4 @@
 import { Container, Title, List, User, Picture, Name } from './styles/profiles'
-// import * as AVATARS from '../../assets/images/users'
 import AVATARS from '../../assets/images/users'
 
 function Profiles({ children, ...restProps }) {
