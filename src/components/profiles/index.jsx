@@ -1,5 +1,6 @@
 import { Container, Title, List, User, Picture, Name } from './styles/profiles'
 import AVATARS from '../../assets/images/users'
+import loading from '../../assets/images/misc/loading.gif'
 
 function Profiles({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>
@@ -18,7 +19,7 @@ Profiles.User = function ProfilesUser({ children, ...restProps }) {
 }
 
 Profiles.Picture = function ProfilesPicture({ src, ...restProps }) {
-  return <Picture {...restProps} src={src ? AVATARS[src] : AVATARS.avatar1} />
+  return <Picture {...restProps} src={src ? AVATARS[src] : loading} />
 }
 
 Profiles.Name = function ProfilesName({ children, ...restProps }) {
