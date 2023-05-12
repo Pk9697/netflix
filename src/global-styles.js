@@ -1,6 +1,10 @@
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
+    * {
+        box-sizing: border-box;
+    }
+
     html,body{
         font-family: 'Netflix sans','Helvetica Neue',Helvetica,Arial, sans-serif;
         -webkit-font-smoothing:antialiased;
