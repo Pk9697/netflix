@@ -25,13 +25,15 @@ function BrowseContainer({ slides }) {
       {loading ? <Loading src={user?.photoURL} /> : <Loading.ReleaseBody />}
 
       <Header src="joker">
-        <Header.Frame>
-          <Header.Group>
+        <Header.Frame flexCol>
+          <Header.Group justifySpaceBetween>
             <Header.Logo to={ROUTES.HOME} src={logo} alt="Netflix" />
-            <Header.TextLink>Series</Header.TextLink>
-            <Header.TextLink>Films</Header.TextLink>
+            <Header.Group>
+              <Header.TextLink>Series</Header.TextLink>
+              <Header.TextLink>Films</Header.TextLink>
+            </Header.Group>
           </Header.Group>
-          <Header.Group>
+          <Header.Group justifyEnd>
             <Header.Search
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}

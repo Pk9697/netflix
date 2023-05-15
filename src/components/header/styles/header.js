@@ -15,12 +15,33 @@ export const Background = styled.div`
       center / cover no-repeat;
 `
 
+export const Group = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  @media (max-width: 600px) {
+    justify-content: ${(props) => {
+      if (props.justifySpaceBetween) {
+        return 'space-between'
+      }
+      if (props.justifyEnd) {
+        return 'flex-end'
+      }
+      return 'flex-start'
+    }};
+
+    width: ${(props) =>
+      props.justifySpaceBetween || props.justifyEnd ? '100%' : 'normal'};
+  }
+`
+
 export const Frame = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 0 3.5em;
-  height: 64px;
+  /* height: 64px; */
   padding: 1.125em 0;
 
   a {
@@ -29,6 +50,10 @@ export const Frame = styled.div`
 
   @media (max-width: 1000px) {
     margin: 0 1.875em;
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: ${(props) => (props.flexCol ? 'column' : 'row')};
   }
 `
 // FEATURE
@@ -45,6 +70,13 @@ export const Feature = styled(Frame)`
     width: 90%;
     padding: 50px 0 300px 0;
     max-width: 600px;
+  }
+
+  @media (max-width: 700px) {
+    padding: 50px 0 200px 0;
+  }
+  @media (max-width: 500px) {
+    padding: 50px 0 100px 0;
   }
 `
 
@@ -94,12 +126,6 @@ export const PlayButton = styled.button`
   @media (max-width: 1100px) {
     font-size: 1rem;
   }
-`
-
-export const Group = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 30px;
 `
 
 export const Logo = styled.img`
@@ -196,12 +222,14 @@ export const SearchInput = styled.input`
   }
 
   @media (max-width: 700px) {
-    width: ${(props) => (props.active ? '100px' : '0px')};
+    width: ${(props) => (props.active ? '150px' : '0px')};
   }
 `
 
 export const Dropdown = styled.div`
-  display: none;
+  display: ${(props) => (props.isDropDownActive ? 'flex' : 'none')};
+  flex-direction: column;
+  gap: 10px;
   position: absolute;
   top: 32px;
   right: 10px;
@@ -225,11 +253,11 @@ export const Profile = styled.div`
   align-items: center;
   position: relative;
 
-  &:hover > ${Dropdown} {
+  /* &:hover > ${Dropdown} {
     display: flex;
     flex-direction: column;
     gap: 10px;
-  }
+  } */
 `
 
 export const Picture = styled.button`

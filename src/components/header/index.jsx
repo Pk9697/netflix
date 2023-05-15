@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { createContext, useContext, useMemo, useState } from 'react'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import {
   Background,
@@ -20,6 +20,8 @@ import {
 } from './styles/header'
 import searchIcon from '../../assets/images/icons/search.png'
 import AVATARS from '../../assets/images/users'
+
+const DropdownContext = createContext()
 
 function Header({ bg = true, children, ...restProps }) {
   return bg ? <Background {...restProps}>{children}</Background> : children
@@ -67,15 +69,40 @@ Header.Search = function HeaderSearch({
 }
 
 Header.Profile = function HeaderProfile({ children, ...restProps }) {
-  return <Profile {...restProps}>{children}</Profile>
+  const [isDropDownActive, setIsDropDownActive] = useState(false)
+  const value = useMemo(
+    () => ({
+      isDropDownActive,
+      setIsDropDownActive,
+    }),
+    [isDropDownActive]
+  )
+
+  return (
+    <DropdownContext.Provider value={value}>
+      <Profile {...restProps}>{children}</Profile>
+    </DropdownContext.Provider>
+  )
 }
 
 Header.Picture = function HeaderPicture({ src, ...restProps }) {
-  return <Picture {...restProps} src={AVATARS[src]} />
+  const { setIsDropDownActive } = useContext(DropdownContext)
+  return (
+    <Picture
+      onClick={() => setIsDropDownActive((prev) => !prev)}
+      {...restProps}
+      src={AVATARS[src]}
+    />
+  )
 }
 
 Header.Dropdown = function HeaderDropdown({ children, ...restProps }) {
-  return <Dropdown {...restProps}>{children}</Dropdown>
+  const { isDropDownActive } = useContext(DropdownContext)
+  return (
+    <Dropdown isDropDownActive={isDropDownActive} {...restProps}>
+      {children}
+    </Dropdown>
+  )
 }
 
 Header.ButtonLink = function HeaderButtonLink({ children, ...restProps }) {
