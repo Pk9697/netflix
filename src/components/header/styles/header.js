@@ -13,6 +13,11 @@ export const Background = styled.div`
     ),
     url(${({ src }) => (src ? BACKGROUNDS[src] : BACKGROUNDS.homeBg)}) top
       center / cover no-repeat;
+
+  /* @media (max-width: 1100px) {
+    ${({ dontShowOnSmallViewPort }) =>
+    dontShowOnSmallViewPort && `background: none;`}
+  } */
 `
 
 export const Group = styled.div`

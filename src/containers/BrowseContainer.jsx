@@ -31,7 +31,7 @@ function BrowseContainer({ slides }) {
     <>
       {loading ? <Loading src={user?.photoURL} /> : <Loading.ReleaseBody />}
 
-      <Header src="joker">
+      <Header dontShowOnSmallViewPort src="joker">
         <Header.Frame flexCol>
           <Header.Group justifySpaceBetween>
             <Header.Logo to={ROUTES.HOME} src={logo} alt="Netflix" />
@@ -93,7 +93,7 @@ function BrowseContainer({ slides }) {
               {slideItem.data.map((item) => (
                 <Card.Item key={item.id} item={item}>
                   <Card.Image
-                    src={`../assets/images/${category}/${item.genre}/${item.slug}/small.jpg`}
+                    src={`/images/${category}/${item.genre}/${item.slug}/small.jpg`}
                   />
                   <Card.Meta>
                     <Card.SubTitle>{item.title}</Card.SubTitle>
@@ -102,6 +102,9 @@ function BrowseContainer({ slides }) {
                 </Card.Item>
               ))}
             </Card.Entities>
+            <Card.Feature category={category}>
+              <p>I am a feature</p>
+            </Card.Feature>
           </Card>
         ))}
       </Card.Group>
