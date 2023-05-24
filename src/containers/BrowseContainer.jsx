@@ -7,6 +7,7 @@ import Header from '../components/header'
 import * as ROUTES from '../constants/routes'
 import logo from '../logo.svg'
 import Card from '../components/card'
+import Player from '../components/player'
 
 function BrowseContainer({ slides }) {
   const [category, setCategory] = useState('series')
@@ -117,7 +118,10 @@ function BrowseContainer({ slides }) {
               ))}
             </Card.Entities>
             <Card.Feature category={category}>
-              <p>I am a feature</p>
+              <Player>
+                <Player.Button />
+                <Player.Video />
+              </Player>
             </Card.Feature>
           </Card>
         ))}
