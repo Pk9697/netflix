@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useState } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import {
   Container,
   Group,
@@ -16,13 +16,21 @@ import {
   FeatureClose,
   Maturity,
 } from './styles/card'
+import { IMAGE_URL } from '../../helpers/urls'
 
 const FeatureContext = createContext()
 
 //* Always set context on compound component root level instead of subcomponent so that you can consume the context in any of the subcomponents
-function Card({ children, ...restProps }) {
+function Card({ url, title, children, ...restProps }) {
   const [showFeature, setShowFeature] = useState(false)
   const [itemFeature, setItemFeature] = useState({})
+  const [items, setItems] = useState([])
+
+  useEffect(() => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setItems(data.results))
+  }, [])
 
   const value = useMemo(() => {
     return {
@@ -35,7 +43,35 @@ function Card({ children, ...restProps }) {
 
   return (
     <FeatureContext.Provider value={value}>
-      <Container {...restProps}>{children}</Container>
+      <Container {...restProps}>
+        <Title>{title}</Title>
+        <Entities>
+          {items.map((item) =>
+            item.backdrop_path ? (
+              <Item
+                key={item.id}
+                // item={item}
+                onClick={() => {
+                  setShowFeature(true)
+                  setItemFeature({ ...item, genre: title })
+                }}
+              >
+                <Image src={`${IMAGE_URL + item.backdrop_path}`} />
+                <Meta>
+                  <SubTitle>
+                    {item.title ||
+                      item.original_title ||
+                      item.name ||
+                      item.original_name}
+                  </SubTitle>
+                  <Text>{item.overview}</Text>
+                </Meta>
+              </Item>
+            ) : null
+          )}
+        </Entities>
+        {children}
+      </Container>
     </FeatureContext.Provider>
   )
 }
@@ -79,15 +115,18 @@ Card.Item = function CardItem({ item, children, ...restProps }) {
 Card.Feature = function CardFeature({ category, children, ...restProps }) {
   const { showFeature, itemFeature, setShowFeature, setItemFeature } =
     useContext(FeatureContext)
-
+  console.log({ itemFeature })
+  // return null
   return showFeature ? (
-    <Feature
-      {...restProps}
-      src={`/images/${category}/${itemFeature?.genre}/${itemFeature?.slug}/large.jpg`}
-    >
+    <Feature {...restProps} src={`${IMAGE_URL + itemFeature.backdrop_path}`}>
       <Content>
-        <FeatureTitle>{itemFeature.title}</FeatureTitle>
-        <FeatureText>{itemFeature.description}</FeatureText>
+        <FeatureTitle>
+          {itemFeature.title ||
+            itemFeature.original_title ||
+            itemFeature.name ||
+            itemFeature.original_name}
+        </FeatureTitle>
+        <FeatureText>{itemFeature.overview}</FeatureText>
         <FeatureClose
           onClick={() => {
             setShowFeature(false)
@@ -99,12 +138,9 @@ Card.Feature = function CardFeature({ category, children, ...restProps }) {
 
         <Group margin="30px 0" flexDirection="row" alignItems="center">
           <Maturity rating={itemFeature.maturity}>
-            {itemFeature.maturity < 12 ? 'PG' : itemFeature.maturity}
+            {!itemFeature.adult ? 'PG' : '18+'}
           </Maturity>
-          <FeatureText fontWeight="bold">
-            {itemFeature.genre.charAt(0).toUpperCase() +
-              itemFeature.genre.slice(1)}
-          </FeatureText>
+          <FeatureText fontWeight="bold">{itemFeature.genre}</FeatureText>
         </Group>
         {children}
       </Content>

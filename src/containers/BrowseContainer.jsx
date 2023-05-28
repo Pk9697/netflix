@@ -8,8 +8,9 @@ import * as ROUTES from '../constants/routes'
 import logo from '../logo.svg'
 import Card from '../components/card'
 import Player from '../components/player'
+import { APIurls, IMAGE_URL } from '../helpers/urls'
 
-function BrowseContainer({ slides }) {
+function BrowseContainer({ slides, randomItem = 'joker' }) {
   const [category, setCategory] = useState('series')
   const [slideRows, setSlideRows] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
@@ -46,7 +47,10 @@ function BrowseContainer({ slides }) {
     <>
       {loading ? <Loading src={user?.photoURL} /> : <Loading.ReleaseBody />}
 
-      <Header dontShowOnSmallViewPort src="joker">
+      <Header
+        dontShowOnSmallViewPort
+        src={`${IMAGE_URL}${randomItem?.backdrop_path}`}
+      >
         <Header.Frame flexCol>
           <Header.Group justifySpaceBetween>
             <Header.Logo to={ROUTES.HOME} src={logo} alt="Netflix" />
@@ -88,43 +92,79 @@ function BrowseContainer({ slides }) {
         </Header.Frame>
 
         <Header.Feature>
-          <Header.Title>Watch Joker Now</Header.Title>
-          <Header.Text>
-            Forever alone in a crowd, failed comedian Arthur Fleck seeks
-            connection as he walks the streets of Gotham City. Arthur wears two
-            masks -- the one he paints for his day job as a clown, and the guise
-            he projects in a futile attempt to feel like he&apos;s part of the
-            world around him.
-          </Header.Text>
+          <Header.Title>
+            {randomItem.name || randomItem.original_name}
+          </Header.Title>
+          <Header.Text>{randomItem.overview}</Header.Text>
           <Header.PlayButton>Play</Header.PlayButton>
         </Header.Feature>
       </Header>
 
       <Card.Group>
-        {slideRows.map((slideItem) => (
-          <Card key={`${category}-${slideItem.title.toLowerCase()}`}>
-            <Card.Title>{slideItem.title}</Card.Title>
-            <Card.Entities>
-              {slideItem.data.map((item) => (
-                <Card.Item key={item.id} item={item}>
-                  <Card.Image
-                    src={`/images/${category}/${item.genre}/${item.slug}/small.jpg`}
-                  />
-                  <Card.Meta>
-                    <Card.SubTitle>{item.title}</Card.SubTitle>
-                    <Card.Text>{item.description}</Card.Text>
-                  </Card.Meta>
-                </Card.Item>
-              ))}
-            </Card.Entities>
-            <Card.Feature category={category}>
-              <Player>
-                <Player.Button />
-                <Player.Video />
-              </Player>
-            </Card.Feature>
-          </Card>
-        ))}
+        <Card url={APIurls.fetchNetflixOriginals} title="Netflix Originals">
+          <Card.Feature category={category}>
+            <Player>
+              <Player.Button />
+              <Player.Video />
+            </Player>
+          </Card.Feature>
+        </Card>
+        <Card url={APIurls.fetchTrending} title="Trending">
+          <Card.Feature category={category}>
+            <Player>
+              <Player.Button />
+              <Player.Video />
+            </Player>
+          </Card.Feature>
+        </Card>
+        <Card url={APIurls.fetchTopRated} title="Top Rated">
+          <Card.Feature category={category}>
+            <Player>
+              <Player.Button />
+              <Player.Video />
+            </Player>
+          </Card.Feature>
+        </Card>
+        <Card url={APIurls.fetchActionMovies} title="Action Movies">
+          <Card.Feature category={category}>
+            <Player>
+              <Player.Button />
+              <Player.Video />
+            </Player>
+          </Card.Feature>
+        </Card>
+        <Card url={APIurls.fetchComedyMovies} title="Comedy Movies">
+          <Card.Feature category={category}>
+            <Player>
+              <Player.Button />
+              <Player.Video />
+            </Player>
+          </Card.Feature>
+        </Card>
+        <Card url={APIurls.fetchHorrorMovies} title="Horror Movies">
+          <Card.Feature category={category}>
+            <Player>
+              <Player.Button />
+              <Player.Video />
+            </Player>
+          </Card.Feature>
+        </Card>
+        <Card url={APIurls.fetchRomanceMovies} title="Romance Movies">
+          <Card.Feature category={category}>
+            <Player>
+              <Player.Button />
+              <Player.Video />
+            </Player>
+          </Card.Feature>
+        </Card>
+        <Card url={APIurls.fetchDocumentaries} title="Documentaries">
+          <Card.Feature category={category}>
+            <Player>
+              <Player.Button />
+              <Player.Video />
+            </Player>
+          </Card.Feature>
+        </Card>
       </Card.Group>
     </>
   ) : (

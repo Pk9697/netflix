@@ -11,8 +11,7 @@ export const Background = styled.div`
       rgba(0, 0, 0, 0.1),
       rgba(0, 0, 0, 0.35)
     ),
-    url(${({ src }) => (src ? BACKGROUNDS[src] : BACKGROUNDS.homeBg)}) top
-      center / cover no-repeat;
+    url(${({ src }) => src || BACKGROUNDS.homeBg}) top center / cover no-repeat;
 
   /* @media (max-width: 1100px) {
     ${({ dontShowOnSmallViewPort }) =>

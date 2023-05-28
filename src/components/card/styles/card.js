@@ -14,6 +14,9 @@ export const Container = styled.div`
 
   margin-bottom: 50px;
 
+  &:first-of-type {
+    margin-top: 50px;
+  }
   &:last-of-type {
     margin-bottom: 0;
   }
@@ -49,16 +52,21 @@ export const Group = styled.div`
 
 export const Entities = styled.div`
   display: flex;
-  /* overflow-x: scroll; */
+  overflow-x: scroll;
+  overflow-y: hidden;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `
 
 export const Image = styled.img`
   border: 0;
-  width: 100%;
+  /* width: 100%; */
   max-width: 305px;
   cursor: pointer;
   height: auto;
-  padding: 0;
+  padding: 1em 0;
   margin: 0;
 `
 export const Meta = styled.div`
@@ -94,7 +102,7 @@ export const Item = styled.div`
   transition: transform 0.2s;
 
   &:hover {
-    transform: scale(1.3);
+    transform: scale(1.15);
     z-index: 99;
   }
 
@@ -127,6 +135,14 @@ export const FeatureText = styled.p`
   font-weight: ${({ fontWeight }) =>
     fontWeight === 'bold' ? 'bold' : 'normal'};
   margin: 0;
+  text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
+  /* white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; */
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 
   @media (max-width: 600px) {
     line-height: 1.22em;
@@ -144,8 +160,9 @@ export const Feature = styled.div`
   background-color: black;
 
   @media (max-width: 1000px) {
-    height: auto;
-    background-size: auto;
+    /* height: auto;
+    background-size: auto; */
+    background-size: cover;
 
     ${Title} {
       font-size: 1.25rem;
@@ -169,6 +186,7 @@ export const Content = styled.div`
 `
 export const FeatureTitle = styled(Title)`
   margin-left: 0;
+  text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
 `
 export const FeatureClose = styled.button`
   color: white;
@@ -195,4 +213,5 @@ export const Maturity = styled.div`
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   margin-right: 0.83em;
   font-size: 0.75rem;
+  text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
 `
