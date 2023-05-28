@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import Fuse from 'fuse.js'
+// import Fuse from 'fuse.js'
 import SelectProfileContainer from './SelectProfileContainer'
 import FirebaseContext from '../context/firebase'
 import Loading from '../components/loading'
@@ -8,11 +8,11 @@ import * as ROUTES from '../constants/routes'
 import logo from '../logo.svg'
 import Card from '../components/card'
 import Player from '../components/player'
-import { APIurls, IMAGE_URL } from '../helpers/urls'
+import { IMAGE_URL } from '../helpers/urls'
 
 function BrowseContainer({ slides, randomItem = 'joker' }) {
   const [category, setCategory] = useState('series')
-  const [slideRows, setSlideRows] = useState([])
+  // const [slideRows, setSlideRows] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
   const [profile, setProfile] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -24,22 +24,22 @@ function BrowseContainer({ slides, randomItem = 'joker' }) {
     }, 3000)
   }, [profile?.displayName])
 
-  useEffect(() => {
-    setSlideRows(slides[category])
-  }, [slides, category])
+  // useEffect(() => {
+  //   setSlideRows(slides[category])
+  // }, [slides, category])
 
-  useEffect(() => {
-    const fuse = new Fuse(slideRows, {
-      keys: ['data.description', 'data.title', 'data.genre'],
-    })
-    const results = fuse.search(searchTerm).map(({ item }) => item)
+  // useEffect(() => {
+  //   const fuse = new Fuse(slideRows, {
+  //     keys: ['data.description', 'data.title', 'data.genre'],
+  //   })
+  //   const results = fuse.search(searchTerm).map(({ item }) => item)
 
-    if (slideRows.length > 0 && searchTerm.length > 3 && results.length > 0) {
-      setSlideRows(results)
-    } else {
-      setSlideRows(slides[category])
-    }
-  }, [searchTerm])
+  //   if (slideRows.length > 0 && searchTerm.length > 3 && results.length > 0) {
+  //     setSlideRows(results)
+  //   } else {
+  //     setSlideRows(slides[category])
+  //   }
+  // }, [searchTerm])
 
   const user = firebaseAuth.currentUser || {}
 
@@ -101,70 +101,17 @@ function BrowseContainer({ slides, randomItem = 'joker' }) {
       </Header>
 
       <Card.Group>
-        <Card url={APIurls.fetchNetflixOriginals} title="Netflix Originals">
-          <Card.Feature category={category}>
-            <Player>
-              <Player.Button />
-              <Player.Video />
-            </Player>
-          </Card.Feature>
-        </Card>
-        <Card url={APIurls.fetchTrending} title="Trending">
-          <Card.Feature category={category}>
-            <Player>
-              <Player.Button />
-              <Player.Video />
-            </Player>
-          </Card.Feature>
-        </Card>
-        <Card url={APIurls.fetchTopRated} title="Top Rated">
-          <Card.Feature category={category}>
-            <Player>
-              <Player.Button />
-              <Player.Video />
-            </Player>
-          </Card.Feature>
-        </Card>
-        <Card url={APIurls.fetchActionMovies} title="Action Movies">
-          <Card.Feature category={category}>
-            <Player>
-              <Player.Button />
-              <Player.Video />
-            </Player>
-          </Card.Feature>
-        </Card>
-        <Card url={APIurls.fetchComedyMovies} title="Comedy Movies">
-          <Card.Feature category={category}>
-            <Player>
-              <Player.Button />
-              <Player.Video />
-            </Player>
-          </Card.Feature>
-        </Card>
-        <Card url={APIurls.fetchHorrorMovies} title="Horror Movies">
-          <Card.Feature category={category}>
-            <Player>
-              <Player.Button />
-              <Player.Video />
-            </Player>
-          </Card.Feature>
-        </Card>
-        <Card url={APIurls.fetchRomanceMovies} title="Romance Movies">
-          <Card.Feature category={category}>
-            <Player>
-              <Player.Button />
-              <Player.Video />
-            </Player>
-          </Card.Feature>
-        </Card>
-        <Card url={APIurls.fetchDocumentaries} title="Documentaries">
-          <Card.Feature category={category}>
-            <Player>
-              <Player.Button />
-              <Player.Video />
-            </Player>
-          </Card.Feature>
-        </Card>
+        {slides.map(({ url, title }, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <Card key={`card-${index}`} url={url} title={title}>
+            <Card.Feature>
+              <Player>
+                <Player.Button />
+                <Player.Video />
+              </Player>
+            </Card.Feature>
+          </Card>
+        ))}
       </Card.Group>
     </>
   ) : (

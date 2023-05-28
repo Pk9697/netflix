@@ -1,13 +1,10 @@
 import { useEffect, useState } from 'react'
 import BrowseContainer from '../containers/BrowseContainer'
 import { APIurls } from '../helpers/urls'
-import useContent from '../hooks/use-content'
-import selectionFilter from '../utils/selection-filter'
+import slidesWithUrlTitle from '../utils/slides-with-url-title'
 
 function Browse() {
   const [randomItem, setRandomItem] = useState({})
-  const { series } = useContent('series')
-  const { films } = useContent('films')
   useEffect(() => {
     const url = APIurls.fetchNetflixOriginals
     fetch(url)
@@ -18,9 +15,10 @@ function Browse() {
       })
   }, [])
 
-  const slides = selectionFilter({ series, films })
+  // const slides = selectionFilter({ series, films })
   // console.log(slides)
-  console.log({ randomItem })
+  const slides = slidesWithUrlTitle()
+  // console.log({ slides })
   return <BrowseContainer randomItem={randomItem} slides={slides} />
 }
 

@@ -62,7 +62,7 @@ export const Entities = styled.div`
 
 export const Image = styled.img`
   border: 0;
-  /* width: 100%; */
+  width: 50vw;
   max-width: 305px;
   cursor: pointer;
   height: auto;

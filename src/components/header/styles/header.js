@@ -66,11 +66,12 @@ export const Feature = styled(Frame)`
   flex-direction: column;
   align-items: normal;
   width: 50%;
-  padding: 150px 0 500px 0;
-
+  /* padding: 150px 0 500px 0; */
+  padding: 10vw 0 20vw 0;
+  max-height: 600px;
   //TODO fix mobile design
-  @media (max-width: 1100px) {
-    /* display: none; */
+  /* @media (max-width: 1100px) {
+    display: none;
     width: 90%;
     padding: 50px 0 300px 0;
     max-width: 600px;
@@ -81,7 +82,7 @@ export const Feature = styled(Frame)`
   }
   @media (max-width: 500px) {
     padding: 50px 0 100px 0;
-  }
+  } */
 `
 
 export const Title = styled.h2`
@@ -105,6 +106,13 @@ export const Text = styled.p`
 
   @media (max-width: 1100px) {
     font-size: 1rem;
+  }
+
+  @media (max-width: 700px) {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 `
 

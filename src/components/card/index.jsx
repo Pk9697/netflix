@@ -115,7 +115,7 @@ Card.Item = function CardItem({ item, children, ...restProps }) {
 Card.Feature = function CardFeature({ category, children, ...restProps }) {
   const { showFeature, itemFeature, setShowFeature, setItemFeature } =
     useContext(FeatureContext)
-  console.log({ itemFeature })
+  // console.log({ itemFeature })
   // return null
   return showFeature ? (
     <Feature {...restProps} src={`${IMAGE_URL + itemFeature.backdrop_path}`}>
