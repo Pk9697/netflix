@@ -13,7 +13,7 @@ import {
 
 //* Firebase project configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyBBoqHgAgNmtB0AViVrXb-1BU35ZF7RSmk',
+  apiKey: import.meta.env.VITE_FIREBASE_CONFIG_API_KEY,
   authDomain: 'netflix-5e2a6.firebaseapp.com',
   projectId: 'netflix-5e2a6',
   storageBucket: 'netflix-5e2a6.appspot.com',

@@ -1,7 +1,5 @@
 const BASE_URL = 'https://api.themoviedb.org/3'
-// TODO store in env
-const API_KEY = '44093fe7919d31a674b7b8d0d4b8ba25'
-
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY
 const slides = () => [
   {
     url: `${BASE_URL}/trending/all/week?api_key=${API_KEY}&language=en-US`,
