@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom'
 import Home from './pages/Home'
 import * as ROUTES from './constants/routes'
 import SignIn from './pages/SignIn'
@@ -13,7 +18,12 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path={ROUTES.HOME} element={<Home user={user} />} />
+        <Route
+          path={ROUTES.HOME}
+          element={
+            user ? <Navigate to={ROUTES.BROWSE} /> : <Home user={user} />
+          }
+        />
         <Route
           path={ROUTES.SIGNIN}
           element={<SignIn user={user} to={ROUTES.BROWSE} />}
