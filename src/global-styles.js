@@ -6,18 +6,18 @@ const GlobalStyle = createGlobalStyle`
     }
 
     html{
-        font-size: 18px;
+        font-size: 16px;
     }
 
     body{
         margin: 0;
         padding: 0;
-        font-family: sans-serif;
+        font-family: 'Netflix sans','Helvetica Neue',Helvetica,Arial, sans-serif;
         -webkit-font-smoothing:antialiased;
         -moz-osx-font-smoothing:grayscale;
         background-color: black;
         color: whitesmoke;
-        font-size: 1em;
+        font-size: 1rem;
     }
 `
 export default GlobalStyle
