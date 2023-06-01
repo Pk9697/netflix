@@ -5,7 +5,11 @@ const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     }
 
-    html,body{
+    html{
+        font-size: 18px;
+    }
+
+    body{
         margin: 0;
         padding: 0;
         font-family: sans-serif;
@@ -13,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
         -moz-osx-font-smoothing:grayscale;
         background-color: black;
         color: whitesmoke;
-        font-size: 1rem;
+        font-size: 1em;
     }
 `
 export default GlobalStyle
