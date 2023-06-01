@@ -6,6 +6,8 @@ const GlobalStyle = createGlobalStyle`
     }
 
     html,body{
+        margin: 0;
+        padding: 0;
         font-family: 'Netflix sans','Helvetica Neue',Helvetica,Arial, sans-serif;
         -webkit-font-smoothing:antialiased;
         -moz-osx-font-smoothing:grayscale;
