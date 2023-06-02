@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-// import 'normalize.css'
+import 'normalize.css'
 import App from './App'
 import './index.css'
 import GlobalStyle from './global-styles'
